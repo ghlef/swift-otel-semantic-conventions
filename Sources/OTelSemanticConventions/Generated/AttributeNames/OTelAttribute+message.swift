@@ -17,34 +17,34 @@ extension OTelAttribute {
     #if Experimental
     /// `message` namespace
     public enum message {
-        /// `message.compressed_size` **UNSTABLE**: Deprecated, use `rpc.message.compressed_size` instead.
+        /// `message.compressed_size` **UNSTABLE**: Deprecated, no replacement at this time.
         ///
         /// - Stability: development
         /// - Type: int
-        @available(*, deprecated, renamed: "OTelAttribute.rpc.message.compressedSize")
+        @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
         public static let compressedSize = "message.compressed_size"
 
-        /// `message.id` **UNSTABLE**: Deprecated, use `rpc.message.id` instead.
+        /// `message.id` **UNSTABLE**: Deprecated, no replacement at this time.
         ///
         /// - Stability: development
         /// - Type: int
-        @available(*, deprecated, renamed: "OTelAttribute.rpc.message.id")
+        @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
         public static let id = "message.id"
 
-        /// `message.type` **UNSTABLE**: Deprecated, use `rpc.message.type` instead.
+        /// `message.type` **UNSTABLE**: Deprecated, no replacement at this time.
         ///
         /// - Stability: development
         /// - Type: enum
         ///     - `SENT`
         ///     - `RECEIVED`
-        @available(*, deprecated, renamed: "OTelAttribute.rpc.message.type")
+        @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
         public static let `type` = "message.type"
 
-        /// `message.uncompressed_size` **UNSTABLE**: Deprecated, use `rpc.message.uncompressed_size` instead.
+        /// `message.uncompressed_size` **UNSTABLE**: Deprecated, no replacement at this time.
         ///
         /// - Stability: development
         /// - Type: int
-        @available(*, deprecated, renamed: "OTelAttribute.rpc.message.uncompressedSize")
+        @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
         public static let uncompressedSize = "message.uncompressed_size"
     }
     #endif

@@ -14,9 +14,9 @@
 // DO NOT EDIT. This file is generated automatically. See README for details.
 
 extension OTelAttribute {
-    #if Experimental
     /// `deployment` namespace
     public enum deployment {
+        #if Experimental
         /// `deployment.environment` **UNSTABLE**: Deprecated, use `deployment.environment.name` instead.
         ///
         /// - Stability: development
@@ -26,14 +26,18 @@ extension OTelAttribute {
         ///     - `production`
         @available(*, deprecated, renamed: "OTelAttribute.deployment.environment.name")
         public static let _environment = "deployment.environment"
+        #endif
 
+        #if Experimental
         /// `deployment.id` **UNSTABLE**: The id of the deployment.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `1208`
         public static let id = "deployment.id"
+        #endif
 
+        #if Experimental
         /// `deployment.name` **UNSTABLE**: The name of the deployment.
         ///
         /// - Stability: development
@@ -42,7 +46,9 @@ extension OTelAttribute {
         ///     - `deploy my app`
         ///     - `deploy-frontend`
         public static let name = "deployment.name"
+        #endif
 
+        #if Experimental
         /// `deployment.status` **UNSTABLE**: The status of the deployment.
         ///
         /// - Stability: development
@@ -50,13 +56,18 @@ extension OTelAttribute {
         ///     - `failed`: failed
         ///     - `succeeded`: succeeded
         public static let status = "deployment.status"
+        #endif
 
         /// `deployment.environment` namespace
         public enum environment {
-            /// `deployment.environment.name` **UNSTABLE**: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
+            /// `deployment.environment.name`: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
             ///
-            /// - Stability: development
-            /// - Type: string
+            /// - Stability: stable
+            /// - Type: enum
+            ///     - `production`: Production environment
+            ///     - `staging`: Staging environment
+            ///     - `test`: Testing environment
+            ///     - `development`: Development environment
             /// - Examples:
             ///     - `staging`
             ///     - `production`
@@ -71,5 +82,4 @@ extension OTelAttribute {
             public static let name = "deployment.environment.name"
         }
     }
-    #endif
 }

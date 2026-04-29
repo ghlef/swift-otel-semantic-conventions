@@ -131,6 +131,15 @@ extension OTelAttribute {
             ///     - `Math Tutor`
             ///     - `Fiction Writer`
             public static let name = "gen_ai.agent.name"
+
+            /// `gen_ai.agent.version` **UNSTABLE**: The version of the GenAI agent.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `1.0.0`
+            ///     - `2025-05-01`
+            public static let version = "gen_ai.agent.version"
         }
 
         /// `gen_ai.conversation` namespace
@@ -337,9 +346,11 @@ extension OTelAttribute {
             ///     - `generate_content`: Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)
             ///     - `text_completion`: Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)
             ///     - `embeddings`: Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)
+            ///     - `retrieval`: Retrieval operation such as [OpenAI Search Vector Store API](https://platform.openai.com/docs/api-reference/vector-stores/search)
             ///     - `create_agent`: Create GenAI agent
             ///     - `invoke_agent`: Invoke GenAI agent
             ///     - `execute_tool`: Execute a tool
+            ///     - `invoke_workflow`: Invoke GenAI workflow
             ///
             /// If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
             public static let name = "gen_ai.operation.name"
@@ -424,7 +435,7 @@ extension OTelAttribute {
             ///     - `anthropic`: [Anthropic](https://www.anthropic.com/)
             ///     - `cohere`: [Cohere](https://cohere.com/)
             ///     - `azure.ai.inference`: Azure AI Inference
-            ///     - `azure.ai.openai`: [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/)
+            ///     - `azure.ai.openai`: [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview)
             ///     - `ibm.watsonx.ai`: [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai)
             ///     - `aws.bedrock`: [AWS Bedrock](https://aws.amazon.com/bedrock)
             ///     - `perplexity`: [Perplexity](https://www.perplexity.ai/)
@@ -505,6 +516,12 @@ extension OTelAttribute {
             /// - Type: stringArray
             public static let stopSequences = "gen_ai.request.stop_sequences"
 
+            /// `gen_ai.request.stream` **UNSTABLE**: Indicates whether the GenAI request was made in streaming mode.
+            ///
+            /// - Stability: development
+            /// - Type: boolean
+            public static let stream = "gen_ai.request.stream"
+
             /// `gen_ai.request.temperature` **UNSTABLE**: The temperature setting for the GenAI request.
             ///
             /// - Stability: development
@@ -558,6 +575,62 @@ extension OTelAttribute {
             /// - Type: string
             /// - Example: `gpt-4-0613`
             public static let model = "gen_ai.response.model"
+
+            /// `gen_ai.response.time_to_first_chunk` **UNSTABLE**: Time to first chunk in a streaming response, measured from request issuance, in seconds. The value is measured from when the client issues the generation request to when the first chunk is received in the response stream.
+            ///
+            /// - Stability: development
+            /// - Type: double
+            /// - Examples:
+            ///     - `0.5`
+            ///     - `1.2`
+            public static let timeToFirstChunk = "gen_ai.response.time_to_first_chunk"
+        }
+
+        /// `gen_ai.retrieval` namespace
+        public enum retrieval {
+            /// `gen_ai.retrieval.documents` **UNSTABLE**: The documents retrieved.
+            ///
+            /// - Stability: development
+            /// - Type: any
+            /// - Example: `[
+            ///   {
+            ///     "id": "doc_123",
+            ///     "score": 0.95
+            ///   },
+            ///   {
+            ///     "id": "doc_456",
+            ///     "score": 0.87
+            ///   },
+            ///   {
+            ///     "id": "doc_789",
+            ///     "score": 0.82
+            ///   }
+            /// ]
+            /// `
+            ///
+            /// Instrumentations MUST follow [Retrieval documents JSON schema](/docs/gen-ai/gen-ai-retrieval-documents.json).
+            /// When the attribute is recorded on events, it MUST be recorded in structured
+            /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
+            /// format is not supported and SHOULD be recorded in structured form otherwise.
+            ///
+            /// Each document object SHOULD contain at least the following properties:
+            /// `id` (string): A unique identifier for the document, `score` (double): The relevance score of the document
+            public static let documents = "gen_ai.retrieval.documents"
+
+            /// `gen_ai.retrieval.query` namespace
+            public enum query {
+                /// `gen_ai.retrieval.query.text` **UNSTABLE**: The query text used for retrieval.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `What is the capital of France?`
+                ///     - `weather in Paris`
+                ///
+                /// > [!Warning]
+                /// > This attribute may contain sensitive information.
+                public static let text = "gen_ai.retrieval.query.text"
+            }
         }
 
         /// `gen_ai.token` namespace
@@ -577,7 +650,7 @@ extension OTelAttribute {
 
         /// `gen_ai.tool` namespace
         public enum tool {
-            /// `gen_ai.tool.definitions` **UNSTABLE**: The list of source system tool definitions available to the GenAI agent or model.
+            /// `gen_ai.tool.definitions` **UNSTABLE**: The list of tool definitions available to the GenAI agent or model.
             ///
             /// - Stability: development
             /// - Type: any
@@ -610,15 +683,15 @@ extension OTelAttribute {
             /// ]
             /// `
             ///
-            /// The value of this attribute matches source system tool definition format.
+            /// Instrumentations MUST follow [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
             ///
-            /// It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
-            /// to the instrumentation, the instrumentation SHOULD do the best effort to
-            /// deserialize it to an array. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+            /// When the attribute is recorded on events, it MUST be recorded in structured
+            /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
+            /// format is not supported and SHOULD be recorded in structured form otherwise.
             ///
             /// Since this attribute could be large, it's NOT RECOMMENDED to populate
-            /// it by default. Instrumentations MAY provide a way to enable
-            /// populating this attribute.
+            /// non-required properties by default. Instrumentations MAY provide a way
+            /// to enable populating optional properties.
             public static let definitions = "gen_ai.tool.definitions"
 
             /// `gen_ai.tool.description` **UNSTABLE**: The tool description.
@@ -716,6 +789,11 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `100`
+            ///
+            /// This value SHOULD include all types of input tokens, including cached tokens.
+            /// Instrumentations SHOULD make a best effort to populate this value, using a total
+            /// provided by the provider when available or, depending on the provider API,
+            /// by summing different token types parsed from the provider output.
             public static let inputTokens = "gen_ai.usage.input_tokens"
 
             /// `gen_ai.usage.output_tokens` **UNSTABLE**: The number of tokens used in the GenAI response (completion).
@@ -732,6 +810,56 @@ extension OTelAttribute {
             /// - Example: `42`
             @available(*, deprecated, renamed: "OTelAttribute.genAi.usage.inputTokens")
             public static let promptTokens = "gen_ai.usage.prompt_tokens"
+
+            /// `gen_ai.usage.cache_creation` namespace
+            public enum cacheCreation {
+                /// `gen_ai.usage.cache_creation.input_tokens` **UNSTABLE**: The number of input tokens written to a provider-managed cache.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `25`
+                ///
+                /// The value SHOULD be included in `gen_ai.usage.input_tokens`.
+                public static let inputTokens = "gen_ai.usage.cache_creation.input_tokens"
+            }
+
+            /// `gen_ai.usage.cache_read` namespace
+            public enum cacheRead {
+                /// `gen_ai.usage.cache_read.input_tokens` **UNSTABLE**: The number of input tokens served from a provider-managed cache.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `50`
+                ///
+                /// The value SHOULD be included in `gen_ai.usage.input_tokens`.
+                public static let inputTokens = "gen_ai.usage.cache_read.input_tokens"
+            }
+
+            /// `gen_ai.usage.reasoning` namespace
+            public enum reasoning {
+                /// `gen_ai.usage.reasoning.output_tokens` **UNSTABLE**: The number of output tokens used for reasoning (e.g. chain-of-thought, extended thinking).
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `50`
+                ///
+                /// The value SHOULD be included in `gen_ai.usage.output_tokens`.
+                public static let outputTokens = "gen_ai.usage.reasoning.output_tokens"
+            }
+        }
+
+        /// `gen_ai.workflow` namespace
+        public enum workflow {
+            /// `gen_ai.workflow.name` **UNSTABLE**: Human-readable name of the GenAI workflow provided by the application.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `multi_agent_rag`
+            ///     - `customer_support_pipeline`
+            ///
+            /// This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
+            public static let name = "gen_ai.workflow.name"
         }
     }
     #endif

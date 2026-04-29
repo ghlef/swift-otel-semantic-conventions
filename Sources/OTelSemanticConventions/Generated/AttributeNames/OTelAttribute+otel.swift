@@ -87,12 +87,11 @@ extension OTelAttribute {
         }
         #endif
 
-        #if Experimental
         /// `otel.event` namespace
         public enum event {
-            /// `otel.event.name` **UNSTABLE**: Identifies the class / type of event.
+            /// `otel.event.name`: Identifies the class / type of event.
             ///
-            /// - Stability: development
+            /// - Stability: stable
             /// - Type: string
             /// - Examples:
             ///     - `browser.mouse.click`
@@ -101,7 +100,6 @@ extension OTelAttribute {
             /// This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
             public static let name = "otel.event.name"
         }
-        #endif
 
         #if Experimental
         /// `otel.library` namespace

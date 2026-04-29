@@ -155,7 +155,6 @@ extension SpanAttributes {
         }
         #endif
 
-        #if Experimental
         /// `otel.event` namespace
         public var event: EventAttributes {
             get {
@@ -177,9 +176,9 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `otel.event.name` **UNSTABLE**: Identifies the class / type of event.
+                /// `otel.event.name`: Identifies the class / type of event.
                 ///
-                /// - Stability: development
+                /// - Stability: stable
                 /// - Type: string
                 /// - Examples:
                 ///     - `browser.mouse.click`
@@ -189,7 +188,6 @@ extension SpanAttributes {
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.otel.event.name) }
             }
         }
-        #endif
 
         #if Experimental
         /// `otel.library` namespace

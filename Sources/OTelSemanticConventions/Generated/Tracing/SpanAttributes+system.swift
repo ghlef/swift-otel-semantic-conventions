@@ -256,6 +256,52 @@ extension SpanAttributes {
                     public init() {}
                 }
 
+                /// `system.memory.linux.hugepages` namespace
+                public var hugepages: HugepagesAttributes {
+                    get {
+                        .init(attributes: self.attributes)
+                    }
+                    set {
+                        self.attributes = newValue.attributes
+                    }
+                }
+
+                @dynamicMemberLookup
+                public struct HugepagesAttributes: SpanAttributeNamespace {
+                    public var attributes: Tracing.SpanAttributes
+
+                    public init(attributes: Tracing.SpanAttributes) {
+                        self.attributes = attributes
+                    }
+
+                    public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                        public init() {}
+
+                        /// `system.memory.linux.hugepages.state` **UNSTABLE**: The Linux HugePages memory state
+                        ///
+                        /// - Stability: development
+                        /// - Type: enum
+                        ///     - `free`
+                        ///     - `used`
+                        /// - Examples:
+                        ///     - `free`
+                        ///     - `used`
+                        public var state: SpanAttributeKey<StateEnum> {
+                            .init(name: OTelAttribute.system.memory.linux.hugepages.state)
+                        }
+
+                        public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                            public let rawValue: String
+                            public init(rawValue: String) {
+                                self.rawValue = rawValue
+                            }
+                            public func toSpanAttribute() -> Tracing.SpanAttribute {
+                                .string(self.rawValue)
+                            }
+                        }
+                    }
+                }
+
                 /// `system.memory.linux.slab` namespace
                 public var slab: SlabAttributes {
                     get {

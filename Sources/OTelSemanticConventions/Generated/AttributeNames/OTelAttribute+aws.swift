@@ -319,7 +319,7 @@ extension OTelAttribute {
 
             /// `aws.lambda.resource_mapping` namespace
             public enum resourceMapping {
-                /// `aws.lambda.resource_mapping.id` **UNSTABLE**: The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
+                /// `aws.lambda.resource_mapping.id` **UNSTABLE**: The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -462,7 +462,7 @@ extension OTelAttribute {
         public enum secretsmanager {
             /// `aws.secretsmanager.secret` namespace
             public enum secret {
-                /// `aws.secretsmanager.secret.arn` **UNSTABLE**: The ARN of the Secret stored in the Secrets Mangger
+                /// `aws.secretsmanager.secret.arn` **UNSTABLE**: The ARN of the Secret stored in the Secrets Manager
                 ///
                 /// - Stability: development
                 /// - Type: string

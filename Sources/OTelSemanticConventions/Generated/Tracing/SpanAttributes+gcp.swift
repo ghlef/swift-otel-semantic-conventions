@@ -662,6 +662,62 @@ extension SpanAttributes {
                     public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.gcp.gce.instance.name) }
                 }
             }
+
+            /// `gcp.gce.instance_group_manager` namespace
+            public var instanceGroupManager: InstanceGroupManagerAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct InstanceGroupManagerAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gcp.gce.instance_group_manager.name` **UNSTABLE**: The name of the Instance Group Manager (IGM) that manages this VM, if any.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `web-igm`
+                    ///     - `my-managed-group`
+                    public var name: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.gce.instanceGroupManager.name)
+                    }
+
+                    /// `gcp.gce.instance_group_manager.region` **UNSTABLE**: The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `us-central1`
+                    ///     - `europe-west1`
+                    public var region: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.gce.instanceGroupManager.region)
+                    }
+
+                    /// `gcp.gce.instance_group_manager.zone` **UNSTABLE**: The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `us-central1-a`
+                    ///     - `europe-west1-b`
+                    public var zone: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.gce.instanceGroupManager.zone)
+                    }
+                }
+            }
         }
     }
     #endif

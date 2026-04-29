@@ -262,6 +262,36 @@ extension OTelAttribute {
                 ///     - `my-vm-name`
                 public static let name = "gcp.gce.instance.name"
             }
+
+            /// `gcp.gce.instance_group_manager` namespace
+            public enum instanceGroupManager {
+                /// `gcp.gce.instance_group_manager.name` **UNSTABLE**: The name of the Instance Group Manager (IGM) that manages this VM, if any.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `web-igm`
+                ///     - `my-managed-group`
+                public static let name = "gcp.gce.instance_group_manager.name"
+
+                /// `gcp.gce.instance_group_manager.region` **UNSTABLE**: The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `us-central1`
+                ///     - `europe-west1`
+                public static let region = "gcp.gce.instance_group_manager.region"
+
+                /// `gcp.gce.instance_group_manager.zone` **UNSTABLE**: The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `us-central1-a`
+                ///     - `europe-west1-b`
+                public static let zone = "gcp.gce.instance_group_manager.zone"
+            }
         }
     }
     #endif

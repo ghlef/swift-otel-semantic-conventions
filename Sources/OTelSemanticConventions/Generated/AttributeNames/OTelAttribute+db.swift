@@ -619,6 +619,11 @@ extension OTelAttribute {
             /// that support query parsing SHOULD generate a summary following
             /// [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
             /// section.
+            ///
+            /// For batch operations, if the individual operations are known to have the same query summary
+            /// then that query summary SHOULD be used prepended by `BATCH `,
+            /// otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+            /// system specific term if more applicable.
             public static let summary = "db.query.summary"
 
             /// `db.query.text`: The database query being executed.

@@ -106,6 +106,38 @@ extension SpanAttributes {
             }
         }
 
+        /// `feature_flag.error` namespace
+        public var error: ErrorAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ErrorAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `feature_flag.error.message` **UNSTABLE**: A message providing more detail about an error that occurred during feature flag evaluation in human-readable form.
+                ///
+                /// - Stability: releaseCandidate
+                /// - Type: string
+                /// - Examples:
+                ///     - `Unexpected input type: string`
+                ///     - `The user has exceeded their storage quota`
+                public var message: SpanAttributeKey<String> { .init(name: OTelAttribute.featureFlag.error.message) }
+            }
+        }
+
         /// `feature_flag.evaluation` namespace
         public var evaluation: EvaluationAttributes {
             get {
@@ -182,12 +214,12 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `feature_flag.evaluation.error.message` **UNSTABLE**: Deprecated, use `error.message` instead.
+                    /// `feature_flag.evaluation.error.message` **UNSTABLE**: Deprecated, use `feature_flag.error.message` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `Flag `header-color` expected type `string` but found type `number``
-                    @available(*, deprecated, renamed: "SpanAttributes.error.message")
+                    @available(*, deprecated, renamed: "SpanAttributes.featureFlag.error.message")
                     public var message: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.featureFlag.evaluation.error.message)
                     }

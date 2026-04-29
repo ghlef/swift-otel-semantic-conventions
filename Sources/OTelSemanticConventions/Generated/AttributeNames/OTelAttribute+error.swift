@@ -30,6 +30,12 @@ extension OTelAttribute {
         /// It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
         ///
         /// `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
+        @available(
+            *,
+            deprecated,
+            message:
+                "Obsoleted: Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors."
+        )
         public static let message = "error.message"
         #endif
 
@@ -48,6 +54,12 @@ extension OTelAttribute {
         ///
         /// When `error.type` is set to a type (e.g., an exception type), its
         /// canonical class name identifying the type within the artifact SHOULD be used.
+        ///
+        /// If the recorded error type is a wrapper that is not meaningful for
+        /// failure classification, instrumentation MAY use the type of the inner
+        /// error instead. For example, in Go, errors created with `fmt.Errorf`
+        /// using `%w` MAY be unwrapped when the wrapper type does not help
+        /// classify the failure.
         ///
         /// Instrumentations SHOULD document the list of errors they report.
         ///

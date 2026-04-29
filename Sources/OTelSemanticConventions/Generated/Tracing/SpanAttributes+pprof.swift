@@ -176,6 +176,50 @@ extension SpanAttributes {
                 public var keepFrames: SpanAttributeKey<String> { .init(name: OTelAttribute.pprof.profile.keepFrames) }
             }
         }
+
+        /// `pprof.scope` namespace
+        public var scope: ScopeAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ScopeAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `pprof.scope.default_sample_type` **UNSTABLE**: Records the pprof's default_sample_type in the original profile. Not set if the default sample type was missing.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `cpu`
+                ///
+                /// This attribute, if present, MUST be set at the scope level (resource_profiles[].scope_profiles[].scope.attributes[]).
+                public var defaultSampleType: SpanAttributeKey<String> {
+                    .init(name: OTelAttribute.pprof.scope.defaultSampleType)
+                }
+
+                /// `pprof.scope.sample_type_order` **UNSTABLE**: Records the indexes of the sample types in the original profile.
+                ///
+                /// - Stability: development
+                /// - Type: intArray
+                ///
+                /// This attribute, if present, MUST be set at the scope level (resource_profiles[].scope_profiles[].scope.attributes[]).
+                public var sampleTypeOrder: SpanAttributeKey<[Int]> {
+                    .init(name: OTelAttribute.pprof.scope.sampleTypeOrder)
+                }
+            }
+        }
     }
     #endif
 }

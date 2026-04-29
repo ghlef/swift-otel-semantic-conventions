@@ -110,6 +110,20 @@ extension OTelAttribute {
 
             /// `system.memory.linux` namespace
             public enum linux {
+                /// `system.memory.linux.hugepages` namespace
+                public enum hugepages {
+                    /// `system.memory.linux.hugepages.state` **UNSTABLE**: The Linux HugePages memory state
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `free`
+                    ///     - `used`
+                    /// - Examples:
+                    ///     - `free`
+                    ///     - `used`
+                    public static let state = "system.memory.linux.hugepages.state"
+                }
+
                 /// `system.memory.linux.slab` namespace
                 public enum slab {
                     /// `system.memory.linux.slab.state` **UNSTABLE**: The Linux Slab memory state

@@ -412,11 +412,25 @@ extension SpanAttributes {
                     /// - Example: `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY`
                     public var go: SpanAttributeKey<String> { .init(name: OTelAttribute.process.executable.buildId.go) }
 
-                    /// `process.executable.build_id.htlhash` **UNSTABLE**: Profiling specific build ID for executables. See the OTel specification for Profiles for more information.
+                    /// `process.executable.build_id.htlhash` **UNSTABLE**: Deterministic build ID for executables.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `600DCAFE4A110000F2BF38C493F5FB92`
+                    ///
+                    /// GNU and Go build IDs may be stripped or unavailable in some environments
+                    /// (e.g., Alpine Linux, Docker images). This attribute provides a deterministic
+                    /// build ID computed by hashing the first and last 4096 bytes of the file
+                    /// along with its length:
+                    ///
+                    /// ```
+                    /// Input   ← Concat(File[:4096], File[-4096:], BigEndianUInt64(Len(File)))
+                    /// Digest  ← SHA256(Input)
+                    /// BuildID ← Digest[:16]
+                    /// ```
+                    ///
+                    /// The result is the first 16 bytes (128 bits) of the SHA256 digest,
+                    /// represented as a hex string.
                     public var htlhash: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.process.executable.buildId.htlhash)
                     }

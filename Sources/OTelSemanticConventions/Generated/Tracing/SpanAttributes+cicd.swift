@@ -316,6 +316,8 @@ extension SpanAttributes {
                         /// - Stability: development
                         /// - Type: string
                         /// - Example: `12097`
+                        ///
+                        /// For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
                         public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.cicd.pipeline.task.run.id) }
 
                         /// `cicd.pipeline.task.run.result` **UNSTABLE**: The result of a task run.

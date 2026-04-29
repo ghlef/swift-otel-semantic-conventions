@@ -58,6 +58,10 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `Division by zero`
             ///     - `Can't convert 'int' object to str implicitly`
+            ///
+            /// > [!WARNING]
+            /// >
+            /// > This attribute may contain sensitive information.
             public var message: SpanAttributeKey<String> { .init(name: OTelAttribute.exception.message) }
 
             /// `exception.stacktrace`: A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
@@ -75,6 +79,12 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `java.net.ConnectException`
             ///     - `OSError`
+            ///
+            /// If the recorded exception type is a wrapper that is not meaningful for
+            /// failure classification, instrumentation MAY use the type of the inner
+            /// exception instead. For example, in Go, errors created with `fmt.Errorf`
+            /// using `%w` MAY be unwrapped when the wrapper type does not help
+            /// classify the failure.
             public var `type`: SpanAttributeKey<String> { .init(name: OTelAttribute.exception.`type`) }
         }
     }

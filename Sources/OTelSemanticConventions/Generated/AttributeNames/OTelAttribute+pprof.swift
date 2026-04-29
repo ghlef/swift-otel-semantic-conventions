@@ -84,6 +84,26 @@ extension OTelAttribute {
             /// - Example: `/bazinga/`
             public static let keepFrames = "pprof.profile.keep_frames"
         }
+
+        /// `pprof.scope` namespace
+        public enum scope {
+            /// `pprof.scope.default_sample_type` **UNSTABLE**: Records the pprof's default_sample_type in the original profile. Not set if the default sample type was missing.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `cpu`
+            ///
+            /// This attribute, if present, MUST be set at the scope level (resource_profiles[].scope_profiles[].scope.attributes[]).
+            public static let defaultSampleType = "pprof.scope.default_sample_type"
+
+            /// `pprof.scope.sample_type_order` **UNSTABLE**: Records the indexes of the sample types in the original profile.
+            ///
+            /// - Stability: development
+            /// - Type: intArray
+            ///
+            /// This attribute, if present, MUST be set at the scope level (resource_profiles[].scope_profiles[].scope.attributes[]).
+            public static let sampleTypeOrder = "pprof.scope.sample_type_order"
+        }
     }
     #endif
 }

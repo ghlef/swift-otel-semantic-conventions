@@ -40,27 +40,27 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `message.compressed_size` **UNSTABLE**: Deprecated, use `rpc.message.compressed_size` instead.
+            /// `message.compressed_size` **UNSTABLE**: Deprecated, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: int
-            @available(*, deprecated, renamed: "SpanAttributes.rpc.message.compressedSize")
+            @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
             public var compressedSize: SpanAttributeKey<Int> { .init(name: OTelAttribute.message.compressedSize) }
 
-            /// `message.id` **UNSTABLE**: Deprecated, use `rpc.message.id` instead.
+            /// `message.id` **UNSTABLE**: Deprecated, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: int
-            @available(*, deprecated, renamed: "SpanAttributes.rpc.message.id")
+            @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
             public var id: SpanAttributeKey<Int> { .init(name: OTelAttribute.message.id) }
 
-            /// `message.type` **UNSTABLE**: Deprecated, use `rpc.message.type` instead.
+            /// `message.type` **UNSTABLE**: Deprecated, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: enum
             ///     - `SENT`
             ///     - `RECEIVED`
-            @available(*, deprecated, renamed: "SpanAttributes.rpc.message.type")
+            @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
             public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.message.`type`) }
 
             public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -73,11 +73,11 @@ extension SpanAttributes {
                 }
             }
 
-            /// `message.uncompressed_size` **UNSTABLE**: Deprecated, use `rpc.message.uncompressed_size` instead.
+            /// `message.uncompressed_size` **UNSTABLE**: Deprecated, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: int
-            @available(*, deprecated, renamed: "SpanAttributes.rpc.message.uncompressedSize")
+            @available(*, deprecated, message: "Obsoleted: Deprecated, no replacement at this time.")
             public var uncompressedSize: SpanAttributeKey<Int> { .init(name: OTelAttribute.message.uncompressedSize) }
         }
     }

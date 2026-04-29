@@ -18,7 +18,6 @@
 import Tracing
 
 extension SpanAttributes {
-    #if Experimental
     /// `deployment` namespace
     public var deployment: DeploymentAttributes {
         get {
@@ -40,6 +39,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
+            #if Experimental
             /// `deployment.environment` **UNSTABLE**: Deprecated, use `deployment.environment.name` instead.
             ///
             /// - Stability: development
@@ -49,14 +49,18 @@ extension SpanAttributes {
             ///     - `production`
             @available(*, deprecated, renamed: "SpanAttributes.deployment.environment.name")
             public var _environment: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment._environment) }
+            #endif
 
+            #if Experimental
             /// `deployment.id` **UNSTABLE**: The id of the deployment.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `1208`
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment.id) }
+            #endif
 
+            #if Experimental
             /// `deployment.name` **UNSTABLE**: The name of the deployment.
             ///
             /// - Stability: development
@@ -65,7 +69,9 @@ extension SpanAttributes {
             ///     - `deploy my app`
             ///     - `deploy-frontend`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment.name) }
+            #endif
 
+            #if Experimental
             /// `deployment.status` **UNSTABLE**: The status of the deployment.
             ///
             /// - Stability: development
@@ -83,6 +89,7 @@ extension SpanAttributes {
                     .string(self.rawValue)
                 }
             }
+            #endif
         }
 
         /// `deployment.environment` namespace
@@ -106,10 +113,14 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `deployment.environment.name` **UNSTABLE**: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
+                /// `deployment.environment.name`: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
                 ///
-                /// - Stability: development
-                /// - Type: string
+                /// - Stability: stable
+                /// - Type: enum
+                ///     - `production`: Production environment
+                ///     - `staging`: Staging environment
+                ///     - `test`: Testing environment
+                ///     - `development`: Development environment
                 /// - Examples:
                 ///     - `staging`
                 ///     - `production`
@@ -121,11 +132,28 @@ extension SpanAttributes {
                 ///
                 /// - `service.name=frontend`, `deployment.environment.name=production`
                 /// - `service.name=frontend`, `deployment.environment.name=staging`.
-                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment.environment.name) }
+                public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.deployment.environment.name) }
+
+                public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    /// `production`: Production environment
+                    public static let production = Self.init(rawValue: "production")
+                    /// `staging`: Staging environment
+                    public static let staging = Self.init(rawValue: "staging")
+                    /// `test`: Testing environment
+                    public static let test = Self.init(rawValue: "test")
+                    /// `development`: Development environment
+                    public static let development = Self.init(rawValue: "development")
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
             }
         }
     }
-    #endif
 }
 
 #endif

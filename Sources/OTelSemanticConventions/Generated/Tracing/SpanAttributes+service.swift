@@ -39,25 +39,53 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
+            #if Experimental
+            /// `service.criticality` **UNSTABLE**: The operational criticality of the service.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `critical`: Service is business-critical; downtime directly impacts revenue, user experience, or core functionality.
+            ///     - `high`: Service is important but has degradation tolerance or fallback mechanisms.
+            ///     - `medium`: Service provides supplementary functionality; degradation has limited user impact.
+            ///     - `low`: Service is non-essential to core operations; used for background tasks or internal tools.
+            /// - Examples:
+            ///     - `critical`
+            ///     - `high`
+            ///     - `medium`
+            ///     - `low`
+            ///
+            /// Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
+            public var criticality: SpanAttributeKey<CriticalityEnum> { .init(name: OTelAttribute.service.criticality) }
+
+            public struct CriticalityEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
+                public func toSpanAttribute() -> Tracing.SpanAttribute {
+                    .string(self.rawValue)
+                }
+            }
+            #endif
+
             /// `service.name`: Logical name of the service.
             ///
             /// - Stability: stable
             /// - Type: string
             /// - Example: `shoppingcart`
             ///
-            /// MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+            /// MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with the process executable name, e.g. `unknown_service:bash`. If the process executable name is not available, the value MUST be set to `unknown_service`.
+            /// The process executable name is the name of the process executable, the same value as described by the [`process.executable.name`](process.md) resource attribute.
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.service.name) }
 
-            #if Experimental
-            /// `service.namespace` **UNSTABLE**: A namespace for `service.name`.
+            /// `service.namespace`: A namespace for `service.name`.
             ///
-            /// - Stability: development
+            /// - Stability: stable
             /// - Type: string
             /// - Example: `Shop`
             ///
             /// A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
             public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.service.namespace) }
-            #endif
 
             /// `service.version`: The version string of the service component. The format is not defined by these conventions.
             ///
@@ -69,7 +97,6 @@ extension SpanAttributes {
             public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.service.version) }
         }
 
-        #if Experimental
         /// `service.instance` namespace
         public var instance: InstanceAttributes {
             get {
@@ -91,9 +118,9 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `service.instance.id` **UNSTABLE**: The string ID of the service instance.
+                /// `service.instance.id`: The string ID of the service instance.
                 ///
-                /// - Stability: development
+                /// - Stability: stable
                 /// - Type: string
                 /// - Example: `627cc493-f310-47de-96bd-71410b7dec09`
                 ///
@@ -126,7 +153,6 @@ extension SpanAttributes {
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.service.instance.id) }
             }
         }
-        #endif
 
         #if Experimental
         /// `service.peer` namespace

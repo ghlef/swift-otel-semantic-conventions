@@ -41,6 +41,47 @@ extension SpanAttributes {
             public init() {}
         }
 
+        /// `openai.api` namespace
+        public var api: ApiAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ApiAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `openai.api.type` **UNSTABLE**: The type of OpenAI API being used.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `chat_completions`: The OpenAI [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview).
+                ///     - `responses`: The OpenAI [Responses API](https://developers.openai.com/api/reference/responses/overview).
+                public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.openai.api.`type`) }
+
+                public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+            }
+        }
+
         /// `openai.request` namespace
         public var request: RequestAttributes {
             get {

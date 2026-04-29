@@ -21,14 +21,14 @@ extension OTelAttribute {
         public enum cluster {
             /// `k8s.cluster.name` **UNSTABLE**: The name of the cluster.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry-cluster`
             public static let name = "k8s.cluster.name"
 
             /// `k8s.cluster.uid` **UNSTABLE**: A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`
             ///
@@ -61,14 +61,14 @@ extension OTelAttribute {
         public enum container {
             /// `k8s.container.name` **UNSTABLE**: The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `redis`
             public static let name = "k8s.container.name"
 
             /// `k8s.container.restart_count` **UNSTABLE**: Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: int
             public static let restartCount = "k8s.container.restart_count"
 
@@ -127,7 +127,7 @@ extension OTelAttribute {
         public enum cronjob {
             /// `k8s.cronjob.annotation` **UNSTABLE**: The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `4`
@@ -143,7 +143,7 @@ extension OTelAttribute {
 
             /// `k8s.cronjob.label` **UNSTABLE**: The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `weekly`
@@ -159,14 +159,14 @@ extension OTelAttribute {
 
             /// `k8s.cronjob.name` **UNSTABLE**: The name of the CronJob.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry`
             public static let name = "k8s.cronjob.name"
 
             /// `k8s.cronjob.uid` **UNSTABLE**: The UID of the CronJob.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.cronjob.uid"
@@ -176,7 +176,7 @@ extension OTelAttribute {
         public enum daemonset {
             /// `k8s.daemonset.annotation` **UNSTABLE**: The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -192,7 +192,7 @@ extension OTelAttribute {
 
             /// `k8s.daemonset.label` **UNSTABLE**: The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -208,14 +208,14 @@ extension OTelAttribute {
 
             /// `k8s.daemonset.name` **UNSTABLE**: The name of the DaemonSet.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry`
             public static let name = "k8s.daemonset.name"
 
             /// `k8s.daemonset.uid` **UNSTABLE**: The UID of the DaemonSet.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.daemonset.uid"
@@ -225,7 +225,7 @@ extension OTelAttribute {
         public enum deployment {
             /// `k8s.deployment.annotation` **UNSTABLE**: The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -241,7 +241,7 @@ extension OTelAttribute {
 
             /// `k8s.deployment.label` **UNSTABLE**: The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -257,14 +257,14 @@ extension OTelAttribute {
 
             /// `k8s.deployment.name` **UNSTABLE**: The name of the Deployment.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry`
             public static let name = "k8s.deployment.name"
 
             /// `k8s.deployment.uid` **UNSTABLE**: The UID of the Deployment.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.deployment.uid"
@@ -351,7 +351,7 @@ extension OTelAttribute {
         public enum job {
             /// `k8s.job.annotation` **UNSTABLE**: The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -367,7 +367,7 @@ extension OTelAttribute {
 
             /// `k8s.job.label` **UNSTABLE**: The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `ci`
@@ -383,14 +383,14 @@ extension OTelAttribute {
 
             /// `k8s.job.name` **UNSTABLE**: The name of the Job.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry`
             public static let name = "k8s.job.name"
 
             /// `k8s.job.uid` **UNSTABLE**: The UID of the Job.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.job.uid"
@@ -400,7 +400,7 @@ extension OTelAttribute {
         public enum namespace {
             /// `k8s.namespace.annotation` **UNSTABLE**: The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `0`
@@ -416,7 +416,7 @@ extension OTelAttribute {
 
             /// `k8s.namespace.label` **UNSTABLE**: The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `default`
@@ -432,7 +432,7 @@ extension OTelAttribute {
 
             /// `k8s.namespace.name` **UNSTABLE**: The name of the namespace that the pod is running in.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `default`
             public static let name = "k8s.namespace.name"
@@ -456,7 +456,7 @@ extension OTelAttribute {
         public enum node {
             /// `k8s.node.annotation` **UNSTABLE**: The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `0`
@@ -472,7 +472,7 @@ extension OTelAttribute {
 
             /// `k8s.node.label` **UNSTABLE**: The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `arm64`
@@ -488,14 +488,14 @@ extension OTelAttribute {
 
             /// `k8s.node.name` **UNSTABLE**: The name of the Node.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `node-1`
             public static let name = "k8s.node.name"
 
             /// `k8s.node.uid` **UNSTABLE**: The UID of the Node.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2`
             public static let uid = "k8s.node.uid"
@@ -542,13 +542,183 @@ extension OTelAttribute {
                 /// When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
                 public static let `type` = "k8s.node.condition.type"
             }
+
+            /// `k8s.node.system_container` namespace
+            public enum systemContainer {
+                /// `k8s.node.system_container.name` **UNSTABLE**: The name of the system container running on the K8s Node.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `kubelet`
+                ///     - `runtime`
+                ///     - `pods`
+                ///     - `misc`
+                public static let name = "k8s.node.system_container.name"
+            }
+        }
+
+        /// `k8s.persistentvolume` namespace
+        public enum persistentvolume {
+            /// `k8s.persistentvolume.annotation` **UNSTABLE**: The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `kubernetes.io/aws-ebs`
+            ///     - ``
+            ///
+            /// Examples:
+            ///
+            /// - An annotation `pv.kubernetes.io/provisioned-by` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+            ///   the `k8s.persistentvolume.annotation.pv.kubernetes.io/provisioned-by` attribute with value `"kubernetes.io/aws-ebs"`.
+            /// - An annotation `data` with empty string value SHOULD be recorded as
+            ///   the `k8s.persistentvolume.annotation.data` attribute with value `""`.
+            public static let annotation = "k8s.persistentvolume.annotation"
+
+            /// `k8s.persistentvolume.label` **UNSTABLE**: The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `ssd`
+            ///     - ``
+            ///
+            /// Examples:
+            ///
+            /// - A label `type` with value `ssd` SHOULD be recorded as
+            ///   the `k8s.persistentvolume.label.type` attribute with value `"ssd"`.
+            /// - A label `data` with empty string value SHOULD be recorded as
+            ///   the `k8s.persistentvolume.label.data` attribute with value `""`.
+            public static let label = "k8s.persistentvolume.label"
+
+            /// `k8s.persistentvolume.name` **UNSTABLE**: The name of the PersistentVolume.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `pv-data-01`
+            public static let name = "k8s.persistentvolume.name"
+
+            /// `k8s.persistentvolume.reclaim_policy` **UNSTABLE**: The reclaim policy of the PersistentVolume.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `Delete`: The volume will be deleted when released from its claim.
+            ///     - `Recycle`: The volume will be recycled (basic scrub) when released from its claim.
+            ///     - `Retain`: The volume will be retained when released from its claim.
+            /// - Examples:
+            ///     - `Delete`
+            ///     - `Retain`
+            ///     - `Recycle`
+            ///
+            /// This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
+            /// [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+            public static let reclaimPolicy = "k8s.persistentvolume.reclaim_policy"
+
+            /// `k8s.persistentvolume.uid` **UNSTABLE**: The UID of the PersistentVolume.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
+            public static let uid = "k8s.persistentvolume.uid"
+
+            /// `k8s.persistentvolume.status` namespace
+            public enum status {
+                /// `k8s.persistentvolume.status.phase` **UNSTABLE**: The phase of the PersistentVolume.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `Available`: The volume is available and not yet bound to a claim.
+                ///     - `Bound`: The volume is bound to a claim.
+                ///     - `Failed`: The volume has failed its automatic reclamation.
+                ///     - `Pending`: The volume is being provisioned.
+                ///     - `Released`: The claim has been deleted but the volume is not yet available.
+                /// - Examples:
+                ///     - `Pending`
+                ///     - `Available`
+                ///     - `Bound`
+                ///     - `Released`
+                ///     - `Failed`
+                ///
+                /// This attribute aligns with the `phase` field of the
+                /// [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
+                public static let phase = "k8s.persistentvolume.status.phase"
+            }
+        }
+
+        /// `k8s.persistentvolumeclaim` namespace
+        public enum persistentvolumeclaim {
+            /// `k8s.persistentvolumeclaim.annotation` **UNSTABLE**: The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `kubernetes.io/aws-ebs`
+            ///     - ``
+            ///
+            /// Examples:
+            ///
+            /// - An annotation `volume.beta.kubernetes.io/storage-provisioner` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+            ///   the `k8s.persistentvolumeclaim.annotation.volume.beta.kubernetes.io/storage-provisioner` attribute with value `"kubernetes.io/aws-ebs"`.
+            /// - An annotation `data` with empty string value SHOULD be recorded as
+            ///   the `k8s.persistentvolumeclaim.annotation.data` attribute with value `""`.
+            public static let annotation = "k8s.persistentvolumeclaim.annotation"
+
+            /// `k8s.persistentvolumeclaim.label` **UNSTABLE**: The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `my-app`
+            ///     - ``
+            ///
+            /// Examples:
+            ///
+            /// - A label `app` with value `my-app` SHOULD be recorded as
+            ///   the `k8s.persistentvolumeclaim.label.app` attribute with value `"my-app"`.
+            /// - A label `data` with empty string value SHOULD be recorded as
+            ///   the `k8s.persistentvolumeclaim.label.data` attribute with value `""`.
+            public static let label = "k8s.persistentvolumeclaim.label"
+
+            /// `k8s.persistentvolumeclaim.name` **UNSTABLE**: The name of the PersistentVolumeClaim.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `pvc-data-01`
+            public static let name = "k8s.persistentvolumeclaim.name"
+
+            /// `k8s.persistentvolumeclaim.uid` **UNSTABLE**: The UID of the PersistentVolumeClaim.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
+            public static let uid = "k8s.persistentvolumeclaim.uid"
+
+            /// `k8s.persistentvolumeclaim.status` namespace
+            public enum status {
+                /// `k8s.persistentvolumeclaim.status.phase` **UNSTABLE**: The phase of the PersistentVolumeClaim.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `Bound`: The claim is bound to a volume.
+                ///     - `Lost`: The claim has lost its underlying volume (the volume does not exist anymore).
+                ///     - `Pending`: The claim has not yet been bound to a volume.
+                /// - Examples:
+                ///     - `Pending`
+                ///     - `Bound`
+                ///     - `Lost`
+                ///
+                /// This attribute aligns with the `phase` field of the
+                /// [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
+                public static let phase = "k8s.persistentvolumeclaim.status.phase"
+            }
         }
 
         /// `k8s.pod` namespace
         public enum pod {
             /// `k8s.pod.annotation` **UNSTABLE**: The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `true`
@@ -567,7 +737,7 @@ extension OTelAttribute {
 
             /// `k8s.pod.hostname` **UNSTABLE**: Specifies the hostname of the Pod.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `collector-gateway`
             ///
@@ -581,7 +751,7 @@ extension OTelAttribute {
 
             /// `k8s.pod.ip` **UNSTABLE**: IP address allocated to the Pod.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `172.18.0.2`
             ///
@@ -591,7 +761,7 @@ extension OTelAttribute {
 
             /// `k8s.pod.label` **UNSTABLE**: The label placed on the Pod, the `<key>` being the label name, the value being the label value.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `my-app`
@@ -618,14 +788,14 @@ extension OTelAttribute {
 
             /// `k8s.pod.name` **UNSTABLE**: The name of the Pod.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry-pod-autoconf`
             public static let name = "k8s.pod.name"
 
             /// `k8s.pod.start_time` **UNSTABLE**: The start timestamp of the Pod.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `2025-12-04T08:41:03Z`
             ///
@@ -639,7 +809,7 @@ extension OTelAttribute {
 
             /// `k8s.pod.uid` **UNSTABLE**: The UID of the Pod.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.pod.uid"
@@ -680,7 +850,7 @@ extension OTelAttribute {
         public enum replicaset {
             /// `k8s.replicaset.annotation` **UNSTABLE**: The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `0`
@@ -696,7 +866,7 @@ extension OTelAttribute {
 
             /// `k8s.replicaset.label` **UNSTABLE**: The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -712,14 +882,14 @@ extension OTelAttribute {
 
             /// `k8s.replicaset.name` **UNSTABLE**: The name of the ReplicaSet.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry`
             public static let name = "k8s.replicaset.name"
 
             /// `k8s.replicaset.uid` **UNSTABLE**: The UID of the ReplicaSet.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.replicaset.uid"
@@ -768,11 +938,185 @@ extension OTelAttribute {
             public static let uid = "k8s.resourcequota.uid"
         }
 
+        /// `k8s.service` namespace
+        public enum service {
+            /// `k8s.service.annotation` **UNSTABLE**: The annotation placed on the Service, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `true`
+            ///     - ``
+            ///
+            /// Examples:
+            ///
+            /// - An annotation `prometheus.io/scrape` with value `true` SHOULD be recorded as
+            ///   the `k8s.service.annotation.prometheus.io/scrape` attribute with value `"true"`.
+            /// - An annotation `data` with empty string value SHOULD be recorded as
+            ///   the `k8s.service.annotation.data` attribute with value `""`.
+            public static let annotation = "k8s.service.annotation"
+
+            /// `k8s.service.label` **UNSTABLE**: The label placed on the Service, the `<key>` being the label name, the value being the label value, even if the value is empty.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `my-service`
+            ///     - ``
+            ///
+            /// Examples:
+            ///
+            /// - A label `app` with value `my-service` SHOULD be recorded as
+            ///   the `k8s.service.label.app` attribute with value `"my-service"`.
+            /// - A label `data` with empty string value SHOULD be recorded as
+            ///   the `k8s.service.label.data` attribute with value `""`.
+            public static let label = "k8s.service.label"
+
+            /// `k8s.service.name` **UNSTABLE**: The name of the Service.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `my-service`
+            public static let name = "k8s.service.name"
+
+            /// `k8s.service.publish_not_ready_addresses` **UNSTABLE**: Whether the Service publishes not-ready endpoints.
+            ///
+            /// - Stability: development
+            /// - Type: boolean
+            /// - Examples:
+            ///     - `true`
+            ///     - `false`
+            ///
+            /// Whether the Service is configured to publish endpoints before the pods are ready.
+            /// This attribute is typically used to indicate that a Service (such as a headless
+            /// Service for a StatefulSet) allows peer discovery before pods pass their readiness probes.
+            /// It aligns with the `publishNotReadyAddresses` field of the
+            /// [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+            public static let publishNotReadyAddresses = "k8s.service.publish_not_ready_addresses"
+
+            /// `k8s.service.selector` **UNSTABLE**: The selector key-value pair placed on the Service, the `<key>` being the selector key, the value being the selector value.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `my-app`
+            ///     - `v1`
+            ///
+            /// These selectors are used to correlate with pod labels. Each selector key-value pair becomes a separate attribute.
+            ///
+            /// Examples:
+            ///
+            /// - A selector `app=my-app` SHOULD be recorded as
+            ///   the `k8s.service.selector.app` attribute with value `"my-app"`.
+            /// - A selector `version=v1` SHOULD be recorded as
+            ///   the `k8s.service.selector.version` attribute with value `"v1"`.
+            public static let selector = "k8s.service.selector"
+
+            /// `k8s.service.traffic_distribution` **UNSTABLE**: The traffic distribution policy for the Service.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `PreferSameZone`
+            ///     - `PreferSameNode`
+            ///
+            /// Specifies how traffic is distributed to endpoints for this Service.
+            /// This attribute aligns with the `trafficDistribution` field of the
+            /// [K8s ServiceSpec](https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution).
+            /// Known values include `PreferSameZone` (prefer endpoints in the same zone as the client) and
+            /// `PreferSameNode` (prefer endpoints on the same node, fallback to same zone, then cluster-wide).
+            /// If this field is not set on the Service, the attribute SHOULD NOT be emitted.
+            /// When not set, Kubernetes distributes traffic evenly across all endpoints cluster-wide.
+            public static let trafficDistribution = "k8s.service.traffic_distribution"
+
+            /// `k8s.service.type` **UNSTABLE**: The type of the Kubernetes Service.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `ClusterIP`: ClusterIP service type
+            ///     - `NodePort`: NodePort service type
+            ///     - `LoadBalancer`: LoadBalancer service type
+            ///     - `ExternalName`: ExternalName service type
+            /// - Examples:
+            ///     - `ClusterIP`
+            ///     - `NodePort`
+            ///     - `LoadBalancer`
+            ///
+            /// This attribute aligns with the `type` field of the
+            /// [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+            public static let `type` = "k8s.service.type"
+
+            /// `k8s.service.uid` **UNSTABLE**: The UID of the Service.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
+            public static let uid = "k8s.service.uid"
+
+            /// `k8s.service.endpoint` namespace
+            public enum endpoint {
+                /// `k8s.service.endpoint.address_type` **UNSTABLE**: The address type of the service endpoint.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `IPv4`: IPv4 address type
+                ///     - `IPv6`: IPv6 address type
+                ///     - `FQDN`: FQDN address type
+                /// - Examples:
+                ///     - `IPv4`
+                ///     - `IPv6`
+                ///
+                /// The network address family or type of the endpoint.
+                /// This attribute aligns with the `addressType` field of the
+                /// [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+                /// It is used to differentiate metrics when a Service is backed by multiple address types
+                /// (e.g., in dual-stack clusters).
+                public static let addressType = "k8s.service.endpoint.address_type"
+
+                /// `k8s.service.endpoint.condition` **UNSTABLE**: The condition of the service endpoint.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `ready`: The endpoint is ready to receive new connections.
+                ///     - `serving`: The endpoint is currently handling traffic.
+                ///     - `terminating`: The endpoint is in the process of shutting down.
+                /// - Examples:
+                ///     - `ready`
+                ///     - `serving`
+                ///     - `terminating`
+                ///
+                /// The current operational condition of the service endpoint.
+                /// An endpoint can have multiple conditions set at once (e.g., both `serving` and `terminating` during rollout).
+                /// This attribute aligns with the condition fields in the [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+                public static let condition = "k8s.service.endpoint.condition"
+
+                /// `k8s.service.endpoint.zone` **UNSTABLE**: The zone of the service endpoint.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `us-east-1a`
+                ///     - `us-west-2b`
+                ///     - `zone-a`
+                ///     - ``
+                ///
+                /// The zone where the endpoint is located, typically corresponding to a failure domain.
+                /// This attribute aligns with the `zone` field of endpoints in the
+                /// [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+                /// It enables zone-aware monitoring of service endpoint distribution and supports
+                /// features like [Topology Aware Routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/).
+                ///
+                /// If the zone is not populated (e.g., nodes without the `topology.kubernetes.io/zone` label),
+                /// the attribute value will be an empty string.
+                public static let zone = "k8s.service.endpoint.zone"
+            }
+        }
+
         /// `k8s.statefulset` namespace
         public enum statefulset {
             /// `k8s.statefulset.annotation` **UNSTABLE**: The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -788,7 +1132,7 @@ extension OTelAttribute {
 
             /// `k8s.statefulset.label` **UNSTABLE**: The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -804,14 +1148,14 @@ extension OTelAttribute {
 
             /// `k8s.statefulset.name` **UNSTABLE**: The name of the StatefulSet.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `opentelemetry`
             public static let name = "k8s.statefulset.name"
 
             /// `k8s.statefulset.uid` **UNSTABLE**: The UID of the StatefulSet.
             ///
-            /// - Stability: alpha
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.statefulset.uid"

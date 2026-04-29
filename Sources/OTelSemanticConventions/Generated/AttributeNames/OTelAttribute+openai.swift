@@ -17,6 +17,17 @@ extension OTelAttribute {
     #if Experimental
     /// `openai` namespace
     public enum openai {
+        /// `openai.api` namespace
+        public enum api {
+            /// `openai.api.type` **UNSTABLE**: The type of OpenAI API being used.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `chat_completions`: The OpenAI [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview).
+            ///     - `responses`: The OpenAI [Responses API](https://developers.openai.com/api/reference/responses/overview).
+            public static let `type` = "openai.api.type"
+        }
+
         /// `openai.request` namespace
         public enum request {
             /// `openai.request.service_tier` **UNSTABLE**: The service tier requested. May be a specific tier, default, or auto.

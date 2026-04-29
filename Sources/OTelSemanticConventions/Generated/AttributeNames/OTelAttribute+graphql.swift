@@ -23,7 +23,7 @@ extension OTelAttribute {
         /// - Type: string
         /// - Example: `query findBookById { bookById(id: ?) { name } }`
         ///
-        /// The value may be sanitized to exclude sensitive information.
+        /// If instrumentation can reliably identify and redact sensitive information it SHOULD do it.
         public static let document = "graphql.document"
 
         /// `graphql.operation` namespace

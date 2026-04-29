@@ -228,7 +228,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.battery.capacity` **UNSTABLE**: Design capacity in Watts-hours or Amper-hours
+                /// `hw.battery.capacity` **UNSTABLE**: Design capacity in Watts-hours or Ampere-hours
                 ///
                 /// - Stability: development
                 /// - Type: string

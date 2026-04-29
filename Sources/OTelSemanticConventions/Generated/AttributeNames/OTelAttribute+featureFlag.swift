@@ -62,6 +62,18 @@ extension OTelAttribute {
             public static let id = "feature_flag.context.id"
         }
 
+        /// `feature_flag.error` namespace
+        public enum error {
+            /// `feature_flag.error.message` **UNSTABLE**: A message providing more detail about an error that occurred during feature flag evaluation in human-readable form.
+            ///
+            /// - Stability: releaseCandidate
+            /// - Type: string
+            /// - Examples:
+            ///     - `Unexpected input type: string`
+            ///     - `The user has exceeded their storage quota`
+            public static let message = "feature_flag.error.message"
+        }
+
         /// `feature_flag.evaluation` namespace
         public enum evaluation {
             /// `feature_flag.evaluation.reason` **UNSTABLE**: Deprecated, use `feature_flag.result.reason` instead.
@@ -87,12 +99,12 @@ extension OTelAttribute {
 
             /// `feature_flag.evaluation.error` namespace
             public enum error {
-                /// `feature_flag.evaluation.error.message` **UNSTABLE**: Deprecated, use `error.message` instead.
+                /// `feature_flag.evaluation.error.message` **UNSTABLE**: Deprecated, use `feature_flag.error.message` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `Flag `header-color` expected type `string` but found type `number``
-                @available(*, deprecated, renamed: "OTelAttribute.error.message")
+                @available(*, deprecated, renamed: "OTelAttribute.featureFlag.error.message")
                 public static let message = "feature_flag.evaluation.error.message"
             }
         }
